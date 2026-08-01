@@ -1,70 +1,70 @@
 # thai-pila-api
 
-Backend API สำหรับโปรเจค THAI PILA (Express + TypeScript + PostgreSQL)
+Backend API for the THAI PILA project (Express + TypeScript + PostgreSQL).
 
-## ความต้องการของระบบ
+## Requirements
 
-- [Node.js](https://nodejs.org/) 18 ขึ้นไป
+- [Node.js](https://nodejs.org/) 18 or later
 - npm
-- PostgreSQL 14 ขึ้นไป
+- PostgreSQL 14 or later
 
-## ติดตั้งและรันบน Local
+## Local setup
 
-### 1. ติดตั้ง dependencies
+### 1. Install dependencies
 
 ```bash
 npm install
 ```
 
-### 2. ตั้งค่า environment
+### 2. Configure environment
 
-คัดลอกไฟล์ตัวอย่างแล้วแก้ค่าให้ตรงกับฐานข้อมูลของคุณ:
+Copy the example file and update the values for your database:
 
 ```bash
 cp .env.example .env
 ```
 
-ตัวแปรสำคัญใน `.env`:
+Important variables in `.env`:
 
-| ตัวแปร | คำอธิบาย | ตัวอย่าง |
-|--------|----------|---------|
-| `PORT` | พอร์ต API | `3001` |
-| `DB_HOST` | host ของ PostgreSQL | `localhost` |
-| `DB_PORT` | พอร์ต PostgreSQL | `5432` |
-| `DB_USER` | username | `postgres` |
-| `DB_PASS` | password | *(รหัสของคุณ)* |
-| `DB_NAME` | ชื่อ database | `thai_pila` |
-| `JWT_SECRET` | secret สำหรับออก JWT ของ admin | สตริงยาวแบบสุ่ม |
+| Variable | Description | Example |
+|----------|-------------|---------|
+| `PORT` | API port | `3001` |
+| `DB_HOST` | PostgreSQL host | `localhost` |
+| `DB_PORT` | PostgreSQL port | `5432` |
+| `DB_USER` | Database username | `postgres` |
+| `DB_PASS` | Database password | *(your password)* |
+| `DB_NAME` | Database name | `thai_pila` |
+| `JWT_SECRET` | Secret used to sign admin JWTs | a long random string |
 
-หรือใช้ `DATABASE_URL` แทนกลุ่ม `DB_*` ก็ได้:
+You can also use `DATABASE_URL` instead of the individual `DB_*` variables:
 
 ```env
 DATABASE_URL=postgresql://postgres:your_password@localhost:5432/thai_pila
 ```
 
-> **อย่า commit ไฟล์ `.env`** — มีอยู่ใน `.gitignore` แล้ว
+> **Do not commit `.env`** — it is already listed in `.gitignore`.
 
-### 3. รันเซิร์ฟเวอร์
+### 3. Start the server
 
-โหมดพัฒนา (hot reload ด้วย nodemon):
+Development mode (hot reload with nodemon):
 
 ```bash
 npm run dev
 ```
 
-หรือ:
+Or:
 
 ```bash
 npm run watch
 ```
 
-รันปกติ:
+Normal start:
 
 ```bash
 npm start
 ```
 
-API จะเปิดที่ [http://localhost:3001](http://localhost:3001)
+The API will be available at [http://localhost:3001](http://localhost:3001).
 
 ### 4. Build TypeScript
 
@@ -72,16 +72,16 @@ API จะเปิดที่ [http://localhost:3001](http://localhost:3001)
 npm run build
 ```
 
-## สคริปต์
+## Scripts
 
-| คำสั่ง | คำอธิบาย |
-|--------|----------|
-| `npm run dev` | รันด้วย nodemon |
-| `npm run watch` | watch ไฟล์แล้วรีรันด้วย ts-node |
-| `npm start` | รันด้วย ts-node |
-| `npm run build` | compile TypeScript |
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Run with nodemon |
+| `npm run watch` | Watch files and re-run with ts-node |
+| `npm start` | Run with ts-node |
+| `npm run build` | Compile TypeScript |
 
-## หมายเหตุความปลอดภัย
+## Security notes
 
-- เก็บ `DB_PASS` และ `JWT_SECRET` ไว้ใน `.env` เท่านั้น ห้าม hardcode ในโค้ด
-- ก่อนเปิด repo เป็นสาธารณะ ตรวจว่าไม่มี credential จริงในโค้ดหรือประวัติ commit
+- Keep `DB_PASS` and `JWT_SECRET` in `.env` only — never hardcode them.
+- Before making the repository public, confirm no real credentials exist in the code or commit history.

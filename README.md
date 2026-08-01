@@ -81,7 +81,4 @@ npm run build
 | `npm start` | Run with ts-node |
 | `npm run build` | Compile TypeScript |
 
-## Security notes
-
-- Keep `DB_PASS` and `JWT_SECRET` in `.env` only — never hardcode them.
-- Before making the repository public, confirm no real credentials exist in the code or commit history.
+ 
